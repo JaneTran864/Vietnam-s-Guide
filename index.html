@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jane’s Vietnam Local Pins</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#fffaf4;
+      --paper:#fffdf9;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --line:#eadfce;
+      --green:#0f766e;
+      --teal:#14b8a6;
+      --orange:#f97316;
+      --gold:#f59e0b;
+      --pink:#ec4899;
+      --shadow:0 18px 50px rgba(50,40,20,.08);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Plus Jakarta Sans',sans-serif;
+      background:linear-gradient(180deg,#fffaf4 0%,#fff7ed 100%);
+      color:var(--text);
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1180px,calc(100% - 32px));margin:0 auto}
+    .hero{padding:64px 0 32px}
+    .hero-card{
+      background:
+        radial-gradient(circle at top right,rgba(20,184,166,.22),transparent 30%),
+        radial-gradient(circle at left bottom,rgba(249,115,22,.18),transparent 28%),
+        var(--paper);
+      border:1px solid rgba(234,223,206,.9);
+      border-radius:32px;
+      padding:40px;
+      box-shadow:var(--shadow);
+    }
+    .eyebrow{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:10px 14px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--line);
+      color:var(--green);
+      font-weight:700;
+      font-size:.85rem;
+    }
+    h1,h2,h3{
+      font-family:'DM Serif Display',serif;
+      margin:0;
+      line-height:1.05;
+    }
+    h1{
+      font-size:clamp(2.8rem,5vw,5rem);
+      margin-top:18px;
+      max-width:10ch;
+    }
+    .lede{
+      margin-top:16px;
+      max-width:66ch;
+      color:var(--muted);
+      font-size:1.05rem;
+      line-height:1.8;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.35fr .95fr;
+      gap:24px;
+      margin-top:28px;
+    }
+    .panel{
+      background:rgba(255,255,255,.88);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:22px;
+    }
+    .mini-list{display:grid;gap:12px;margin-top:14px}
+    .mini-item{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      color:var(--muted);
+      line-height:1.6;
+    }
+    .mini-icon{
+      width:38px;
+      height:38px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      font-size:1.1rem;
+      background:#fff7ed;
+      flex:0 0 38px;
+    }
+    .section{padding:18px 0 12px}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+    }
+    .card{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#ecfeff;
+      color:var(--green);
+      border:1px solid #c7f0ec;
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:.8rem;
+      font-weight:800;
+      letter-spacing:.02em;
+    }
+    .card h3{font-size:1.8rem;margin-top:14px}
+    .why{
+      color:var(--muted);
+      line-height:1.75;
+      margin:10px 0 10px;
+    }
+    .what{
+      font-size:.9rem;
+      color:#b45309;
+      font-weight:600;
+      margin-bottom:16px;
+    }
+    .what span{
+      font-weight:400;
+      color:var(--muted);
+    }
+    .addr{
+      background:#fff;
+      border:1px dashed #d9cbb9;
+      border-radius:18px;
+      padding:14px 16px;
+      font-size:.95rem;
+    }
+    .addr strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:.9rem;
+      color:#b45309;
+      text-transform:uppercase;
+      letter-spacing:.07em;
+    }
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:16px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:800;
+      border:none;
+      cursor:pointer;
+    }
+    .btn.primary{
+      background:linear-gradient(135deg,var(--green),var(--teal));
+      color:#fff;
+    }
+    .btn.secondary{
+      background:#fff;
+      border:1px solid var(--line);
+      color:var(--text);
+    }
+    .city-band{
+      margin:30px 0 12px;
+      padding:14px 18px;
+      border-radius:20px;
+      background:linear-gradient(90deg,rgba(15,118,110,.08),rgba(249,115,22,.08));
+      border:1px solid var(--line);
+    }
+    .city-band h2{font-size:2.2rem}
+    .city-band p{
+      color:var(--muted);
+      line-height:1.7;
+      margin-top:6px;
+      max-width:60ch;
+    }
+    .notes{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+    }
+    .note-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:22px;
+    }
+    footer{
+      padding:28px 0 60px;
+      color:var(--muted);
+    }
+    .footer-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:22px;
+    }
+    @media (max-width:900px){
+      .hero-grid,.grid,.notes{grid-template-columns:1fr}
+      .hero-card{padding:28px}
+      h1{max-width:none}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-card">
+        <div class="eyebrow">📍 Jane’s Vietnam guide for friends</div>
+        <h1>Vietnam, but with local pins.</h1>
+        <p class="lede">
+          This version strips out the long planning layer and works more like a save list:
+          working map links, direct addresses, and very local Hà Nội foods like cốm, chả cốm,
+          and kem Tràng Tiền alongside the classics.
+        </p>
+        <div class="hero-grid">
+          <div class="panel">
+            <h3 style="font-family:'DM Serif Display',serif;font-size:1.8rem;">How to use this</h3>
+            <div class="mini-list">
+              <div class="mini-item">
+                <div class="mini-icon">🍜</div>
+                <div>Pick a city, star 2–3 spots in Maps, and keep this page as your shortlist.</div>
+              </div>
+              <div class="mini-item">
+                <div class="mini-icon">🗺️</div>
+                <div>Each card has a Google Maps button using a standard search URL so it opens cleanly.</div>
+              </div>
+              <div class="mini-item">
+                <div class="mini-icon">🌾</div>
+                <div>Hà Nội leans into hyper-local snacks like cốm, chả cốm, and kem Tràng Tiền, not just tourist staples.</div>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3 style="font-family:'DM Serif Display',serif;font-size:1.8rem;">Keep it simple</h3>
+            <div class="mini-list">
+              <div class="mini-item">
+                <div class="mini-icon">🍲</div>
+                <div>Hà Nội: phở, bún chả, egg coffee, cốm, chả cốm, kem Tràng Tiền.</div>
+              </div>
+              <div class="mini-item">
+                <div class="mini-icon">🥖</div>
+                <div>Sài Gòn: cơm tấm, bánh mì, busy easy food pins.</div>
+              </div>
+              <div class="mini-item">
+                <div class="mini-icon">🌊</div>
+                <div>Phú Quốc: island noodles, seafood, practical transport.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- HANOI -->
+    <section class="section">
+      <div class="city-band">
+        <h2>Hà Nội</h2>
+        <p>
+          This section leans into foods that feel specifically northern and specifically local:
+          phở and bún chả, but also cốm, chả cốm, and kem Tràng Tiền near the lake.
+        </p>
+      </div>
+      <div class="grid">
+
+        <article class="card">
+          <div class="badge">✨ Phở</div>
+          <h3>Phở 10 Lý Quốc Sư</h3>
+          <p class="why">
+            Classic no-fuss phở stop in Hoàn Kiếm when you want a dependable bowl
+            right in the middle of the city.
+          </p>
+          <p class="what">
+            What to try: <span>phở bò tái nạm or a mixed beef bowl, lots of herbs and lime.</span>
+          </p>
+          <div class="addr">
+            <strong>Address</strong>
+            <div>10 Lý Quốc Sư, Hàng Trống, Hoàn Kiếm, Hà Nội, Vietnam</div>
+          </div>
+          <div class="actions">
+            <a class="btn primary"
+               href="https://www.google.com/maps/search/?api=1&query=10+L%C3%BD+Qu%E1%BB%91c+S%C6%B0,+H%C3%A0ng+Tr%E1%BB%91ng,+Ho%C3%A0n+Ki%E1%BA%BFm,+H%C3%A0+N%E1%BB%99,+Vietnam"
+               target="_blank" rel="noopener noreferrer">
+              🗺️ Open in Google Maps
+            </a>
+            <a class="btn secondary"
+               href="https://pho10lyquocsu.com"
+               target="_blank" rel="noopener noreferrer">
+              🔗 Official page
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="badge">✨ Coffee</div>
+          <h3>Egg Coffee &amp; More</h3>
+          <p class="why">
+            Central Old Quarter egg coffee stop with early opening hours and
+            an easy pin to save for mornings.
+          </p>
+          <p class="what">
+            What to try: <span>hot egg coffee first; add an iced version if you want a lighter second round.</span>
+          </p>
+          <div class="addr">
+            <strong>Address</strong>
+            <div>39 Bát Sứ, Hàng Bồ, Hoàn Kiếm, Hà Nội, Vietnam</div>
+          </div>
+          <div class="actions">
+            <a class="btn primary"
+               href="https://www.google.com/maps/search/?api=1&query=39+B%C3%A1t+S%E1%BB%A9,+H%C3%A0ng+B%E1%BB%93,+Ho%C3%A0n+Ki%E1%BA%BFm,+H%C3%A0+N%E1%BB%99,+Vietnam"
+               target="_blank" rel="noopener noreferrer">
+              🗺️ Open in Google Maps
+            </a>
+            <a class="btn secondary"
+               href="https://www.facebook.com/eggcoffeenmore/"
+               target="_blank" rel="noopener noreferrer">
+              🔗 Facebook
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="badge">✨ Bún chả</div>
+          <h3>Bún Chả Hương Liên</h3>
+          <p class="why">
+            Well-known bún chả address in Hai Bà Trưng that works as a practical
+            lunch pin, made famous by the Obama–Bourdain visit.
+          </p>
+          <p class="what">
+            What to try: <span>full bún chả set with nem rán (fried spring rolls) for the “Obama combo”.</span>
+          </p>
+          <div class="addr">
+            <strong>Address</strong>
+            <div>24 Lê Văn Hưu, Phạm Đình Hổ, Hai Bà Trưng, Hà Nội, Vietnam</div>
+          </div>
+          <div class="actions">
+            <a class="btn primary"
+               href="https://www.google.com/maps/search/?api=1&query=24+L%C3%AA+V%C4%83n+H%C6%B0u,+Ph%E1%BA%A1m+%C4%90%C3%ACnh+H%E1%BB%95,+Hai+B%C3%A0+Tr%C6%B0ng,+H%C3%A0+N%E1%BB%99,+Vietnam"
+               target="_blank" rel="noopener noreferrer">
+              🗺️ Open in Google Maps
+            </a>
+            <a class="btn secondary"
+               href="https://guide.michelin.com/en/ha-noi/ha-noi_2974158/restaurant/bun-cha-huong-lien"
+               target="_blank" rel="noopener noreferrer">
+              🔗 Info page
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="badge">✨ Ice cream</div>
+          <h3>Kem Tràng Tiền</h3>
+          <p class="why">
+            Very old-school Hà Nội ice cream spot near the lake, perfect for a
+            quick stop when you’re walking around Hoàn Kiếm.
+          </p>
+          <p class="what">
+            What to try: <span>que ice cream in cốm or vanilla flavour, plus one cone if you feel like queuing again.</span>
+          </p>
+          <div class="addr">
+            <strong>Address</strong>
+            <div>35 Tràng Tiền, Hoàn Kiếm, Hà Nội, Vietnam</div>
+          </div>
+          <div class="actions">
+            <a class="btn primary"
+               href="https://www.google.com/maps/search/?api=1&query=35+Tr%C3%A0ng+Ti%E1%BB%81n,+Ho%C3%A0n+Ki%E1%BA%BFm,+H%C3%A0+N%E1%BB%99,+Vietnam"
+               target="_blank" rel="noopener noreferrer">
+              🗺️ Open in Google Maps
+            </a>
+            <a class="btn secondary"
+               href="https://kemtrangtien.vn"
+               target="_blank" rel="noopener noreferrer">
+              🔗 Official site
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="badge">✨ Cốm</div>
+          <h3>Cốm Làng Vòng</h3>
+          <p class="why">
+            Classic Hà Nội young green rice from Làng Vòng, best in autumn but
+            still worth visiting off-season for bánh cốm and xôi cốm.
+          </p>
+          <p class="what">
+            What to try: <span>cốm gói trong lá sen if it’s in season; otherwise bánh cốm or xôi cốm.</span>
+          </p>
+          <div class="addr">
+            <strong>Address</strong>
+            <div>36 ngõ 63 Xuân Thủy, Dịch Vọng Hậu, Cầu Giấy, Hà Nội, Vietnam</div>
+          </div>
+          <div class="actions">
+            <a class="btn primary"
+               href="https://www.google.com/maps/search/?api=1&query=36+Ng%C3%B5+63+Xu%C3%A2n+Th%E1%BB%A7y,+C%E1%BA%A7u+Gi%E1%BA%A5y,+H%C3%A0+N%E1%BB%99,+Vietnam"
+               target="_blank" rel="noopener noreferrer">
+              🗺️ Open in Google Maps
+            </a>
+            <a class="btn secondary"
+               href="https://langcomvong.com/com-lang-vong.html"
+               target="_blank" rel="noopener noreferrer">
+              🔗 Info page
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="badge">✨ Chả cốm</div>
+          <h3>Chả Cốm Hà Nội</h3>
+          <p class="why">
+            Fried pork patties mixed with young green rice; crispy outside,
+            soft and fragrant inside — very Hanoian and very snackable.
+          </p>
+          <p class="what">
+            What to try: <span>chả cốm chiên nóng, on its own or with rice; look for greenish rice bits on the surface.</span>
+          </p>
+          <div class="addr">
+            <strong>Address</strong>
+            <div>5 ngõ 1 Nghĩa Tân, Cầu Giấy, Hà Nội, Vietnam</div>
+          </div>
+          <div class="actions">
+            <a class="btn primary"
+               href="https://www.google.com/maps/search/?api=1&query=5+Ng%C3%B5+1+Ngh%C4%A9a+T%C3%A2n,+C%E1%BA%A7u+Gi%E1%BA%A5y,+H%C3%A0+N%E1%BB%99,+Vietnam"
+               target="_blank" rel="noopener noreferrer">
+              🗺️ Open in Google Maps
+            </a>
+            <a class="btn secondary"
+               href="https://chaca.com.vn/cha-com-ha-noi-goi-500g/"
+               target="_blank" rel="noopener noreferrer">
+              🔗 Info page
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SAIGON -->
+    <section class="section">
+      <div class="city-band">
+        <h2>Hồ Chí Minh City</h2>
+        <p>
+          For Sài Gòn, keep it bold, fast, and satisfying: cơm tấm and bánh mì
+          that are easy to squeeze between café stops and walking days.
+        </p>
+      </div>
+      <div class="grid">
+
+        <article class="card">
+          <div class="badge">✨ Cơm tấm</div>
+          <h3>Cơm Tấm Sà Bì Chưởng</h3>
+          <p class="why">
+            A strong save for cơm tấm when you want something filling, fast,
+            and very Sài Gòn.
+          </p>
+          <p class="what">
+            What to try: <span>full “sà bì chưởng” combo — sườn, bì, chả with plenty of mỡ hành and fish sauce.</span>
+          </p>
+          <div class="addr">
+            <strong>Address</strong>
+            <div>179 Trần Bình Trọng, Phường 3, Quận 5, Hồ Chí Minh City, Vietnam</div>
+          </div>
+          <div class="actions">
+            <a class="btn primary"
+               href="https://www.google.com/maps/search/?api=1&query=179+Tr%E1%BA%A7n+B%C3%ACnh+Tr%E1%BB%8Dng,+Ph%C6%B0%E1%BB%9Dng+3,+Qu%E1%BA%ADn+5,+H%E1%BB%93+Ch%C3%AD+Minh,+Vietnam"
+               target="_blank" rel="noopener noreferrer">
+              🗺️ Open in Google Maps
+            </a>
+            <a class="btn secondary"
+               href="https://www.facebook.com/SaBiChuongbyBrothers/"
+               target="_blank" rel="noopener noreferrer">
+              🔗 Facebook
+            </a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="badge">✨ Bánh mì</div>
+          <h3>Bánh Mì Huynh Hoa</h3>
+          <p class="why">
+            One of the easiest bánh mì addresses to pin before a busy District 1 day,
+            stacked with cold cuts and pâté.
+          </p>
+          <p class="what">
+            What to try: <span>mixed cold-cuts bánh mì; ideal to split because it’s packed and rich.</span>
+          </p>
+          <div class="addr">
+            <strong>Address</strong>
+            <div>26 Lê Thị Riêng, Phường Bến Thành, Quận 1, Hồ Chí Minh City, Vietnam</div>
+          </div>
+          <div class="actions">
+            <a class="btn primary"
+               href="https://www.google.com/maps/search/?api=1&query=26+L%C3%AA+Th%E1%BB%8B+Ri%C3%AAng,+B%E1%BA%BFn+Th%C3%A0nh,+Qu%E1%BA%ADn+1,+H%E1%BB%93+Ch%C3%AD+Minh,+Vietnam"
+               target="_blank" rel="noopener noreferrer">
+              🗺️ Open in Google Maps
+            </a>
+            <a class="btn secondary"
+               href="https://www.facebook.com/banhmihuynhhoa/"
+               target="_blank" rel="noopener noreferrer">
+              🔗 Facebook
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- PHU QUOC -->
+    <section class="section">
+      <div class="city-band">
+        <h2>Phú Quốc</h2>
+        <p>
+          For Phú Quốc, this guide stays practical: island noodles, seafood, and
+          pins you can mix with snorkelling or beach days.
+        </p>
+      </div>
+      <div class="grid">
+
+        <article class="card">
+          <div class="badge">✨ Bún quậy</div>
+          <h3>Bún Quậy Kiến Xây</h3>
+          <p class="why">
+            Local-style noodle stop in Dương Đông; DIY dipping sauce and
+            hot bowls are perfect after a swim.
+          </p>
+          <p class="what">
+            What to try: <span>one basic bowl with shrimp and squid plus at least one extra serving of the DIY sauce.</span>
+          </p>
+          <div class="addr">
+            <strong>Address</strong>
+            <div>28 Bạch Đằng, Phường Dương Đông, Phú Quốc, Kiên Giang, Vietnam</div>
+          </div>
+          <div class="actions">
+            <a class="btn primary"
+               href="https://www.google.com/maps/search/?api=1&query=28+B%E1%BA%A1ch+%C4%90%E1%BA%B1ng,+D%C6%B0%C6%A1ng+%C4%90%C3%B4ng,+Ph%C3%BA+Qu%E1%BB%91c,+Ki%C3%AAn+Giang,+Vietnam"
+               target="_blank" rel="noopener noreferrer">
+              🗺️ Open in Google Maps
+            </a>
+            <a class="btn secondary"
+               href="https://www.facebook.com/388417815231103"
+               target="_blank" rel="noopener noreferrer">
+              🔗 Facebook
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- TRANSPORT -->
+    <section class="section">
+      <div class="city-band">
+        <h2>Getting around</h2>
+        <p>
+          Flights are already booked, so this part stays simple: ride apps,
+          map habits, and small things that make moving around easier.
+        </p>
+      </div>
+      <div class="notes">
+
+        <article class="note-card">
+          <h3 style="font-size:1.6rem;">Xanh SM</h3>
+          <p class="why">
+            Electric taxi app and official channels for quick local rides when you
+            want a straightforward alternative to negotiating with taxis.
+          </p>
+          <div class="addr">
+            <strong>Useful links</strong>
+            <div>
+              Website: www.xanhsm.com<br>
+              App: “Xanh SM” on Google Play / App Store
+            </div>
+          </div>
+          <div class="actions">
+            <a class="btn primary"
+               href="https://www.xanhsm.com/"
+               target="_blank" rel="noopener noreferrer">
+              ↗ Open Xanh SM
+            </a>
+          </div>
+        </article>
+
+        <article class="note-card">
+          <h3 style="font-size:1.6rem;">Map-saving habit</h3>
+          <p class="why">
+            Save each food stop into Google Maps before you land so this page
+            becomes a working shortlist instead of a long read.
+          </p>
+          <div class="addr">
+            <strong>Practical use</strong>
+            <div>
+              Create a Hà Nội, Sài Gòn, and Phú Quốc saved list and star your
+              must-eat stops first.
+            </div>
+          </div>
+          <div class="actions">
+            <a class="btn secondary"
+               href="https://www.google.com/maps"
+               target="_blank" rel="noopener noreferrer">
+              🗺️ Open Google Maps
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-card">
+        This rebuild is meant to live on your phone as a shortlist — quick pins,
+        local foods, and links out to Maps or official pages when you need them.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
